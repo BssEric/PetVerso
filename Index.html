@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="imgs/dog-alt (2).png" type="img/dog-alt(2).png" />
+    <title>PetVerso</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link href='https://cdn.boxicons.com/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body>
+    <!-- Tela de entrada com imagem -->
+    <div class="zoom-wrapper">
+        <img src="imgs/2.png" alt="Imagem Zoom" class="zoom-image">
+    </div>
+
+    <nav class="navbar bg-transparent position-absolute w-100" id="home">
+        <div class="container-fluid">
+            <!-- Menu hamburguer à esquerda -->
+            <a class="navbar-brand" href="#">
+                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <svg width="50" height="40" fill="#ffffff" viewBox="0 0 24 24">
+                        <path d="M4 5H20V7H4z" />
+                        <path d="M4 11H20V13H4z" />
+                        <path d="M4 17H20V19H4z" />
+                    </svg>
+                </button>
+            </a>
+
+            <!-- Botão Circular Que Estica No hover à direita -->
+            <div class="d-flex justify-content-end">
+                <a href="login.html" class="stretch-btn" aria-label="Ver mais" style="text-decoration: none;">
+                    <span class="btn__icon" aria-hidden="true">➜</span>
+                    <span class="btn__label">Ver mais</span>
+                </a>
+            </div>
+
+            <!-- Offcanvas Menu -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar"
+                aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title text-black" id="offcanvasNavbarLabel">Menu</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <hr class="text-white">
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Serviços</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="login.html">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero section com texto centralizado -->
+    <section class="hero">
+        <h1>Pet<span style="color:#ffc700 ;">Verso</span></h1>
+        <hr class="linha">
+        <p>mimos e cuidados para seu melhor amigo</p>
+    </section>
+    <!-- Serviços -->
+    <section class="services" id="services">
+        <div class="section-title animate">
+            <h2>Nossos Serviços</h2>
+            <p>Oferecemos uma gama completa de serviços para garantir a saúde e bem-estar do seu animal de estimação.
+            </p>
+        </div>
+        <div class="services-container">
+            <div class="service-card animate">
+                <img src="imgs/exame.jpg" alt="Consulta Veterinária">
+                <div class="service-content">
+                    <h3>Consulta Veterinária</h3>
+                    <p>Exames completos e diagnósticos precisos para manter seu pet saudável.</p>
+                    <a href="#" class="read-more">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="service-card animate">
+                <img src="imgs/vacinação.jpg" alt="Vacinação">
+                <div class="service-content">
+                    <h3>Vacinação</h3>
+                    <p>Proteja seu pet contra as principais doenças com nosso programa de vacinação.</p>
+                    <a href="#" class="read-more">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="service-card animate">
+                <img src="imgs/cachorromedico.jpg" alt="Cirurgia">
+                <div class="service-content">
+                    <h3>Cirurgia Veterinária</h3>
+                    <p>Procedimentos cirúrgicos realizados com equipamentos modernos e segurança.</p>
+                    <a href="#" class="read-more">Saiba mais <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nós -->
+    <section class="about" id="about">
+        <div class="about-img animate">
+            <img src="imgs/equipe.jpg" alt="Equipe PetVerso">
+        </div>
+        <div class="about-content animate">
+            <h2>Sobre a PetVerso</h2>
+            <p>Fundada em 2025, a PetVerso se tornou referência em medicina veterinária, oferecendo atendimento
+                especializado e personalizado para cada paciente.</p>
+            <p>Nossa equipe é composta por profissionais altamente qualificados e apaixonados por animais, prontos para
+                oferecer o melhor tratamento para seu pet.</p>
+            <p>Possuímos equipamentos de última geração e seguimos rigorosos protocolos de segurança e bem-estar animal.
+            </p>
+            <a href="#contact" class="cta-button">Entre em Contato</a>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="testimonials" id="testimonials">
+        <div class="section-title animate">
+            <h2>O que dizem nossos clientes</h2>
+            <p>Veja a opinião de quem já confiou no nosso trabalho</p>
+        </div>
+        <div class="testimonial-container">
+            <div class="testimonial animate">
+                <div class="testimonial-content">
+                    <p>"Levo meus pets na PetVerso há anos e sempre fico impressionada com o cuidado e atenção da
+                        equipe. Meu cachorro adora ir às consultas!"</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ana Silva">
+                    <div class="author-info">
+                        <h4>Ana Silva</h4>
+                        <p>Tutora do Thor</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial animate">
+                <div class="testimonial-content">
+                    <p>"Quando meu gato precisou de uma cirurgia de emergência, a equipe da PetVerso foi incrível.
+                        Profissionais competentes e muito humanos."</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Mendes">
+                    <div class="author-info">
+                        <h4>Carlos Mendes</h4>
+                        <p>Tutor do Frajola</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>PetVerso</h3>
+                <p>Clínica veterinária especializada em oferecer o melhor atendimento e cuidado para seu animal de
+                    estimação.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Links Rápidos</h3>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#testimonials">Depoimentos</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 PetVerso. Todos os direitos reservados.</p>
+        </div>
+        <div class="Powered">
+            <div class="text-center mt-4">
+                <p>Powered by <a href="https://github.com/BssEric" target="_blank" rel="noopener noreferrer">BssEric</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Animação ao rolar a página
+        document.addEventListener('DOMContentLoaded', function () {
+            const animateElements = document.querySelectorAll('.animate');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+
+
+            // Header fixo com efeito ao rolar
+            window.addEventListener('scroll', function () {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.style.padding = '15px 5%';
+                    header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.padding = '20px 5%';
+                    header.style.boxShadow = 'none';
+                }
+            });
+        });
+    </script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

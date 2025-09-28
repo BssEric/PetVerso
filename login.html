@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetVerso - Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- icone -->
+     <link rel="icon" href="imgs/dog-alt (2).png" type="img/dog-alt(2).png" />
+    <style>
+        :root {
+            --primary: #7ed957;
+            --secondary: #ffc700;
+            --accent: #6ecb63;
+            --dark: #1a1a1a;
+            --light: #f8f9fa;
+        }
+        
+        body {
+            background: #f5f7fa;
+            min-height: 100vh;
+            padding-top: 76px; /* Espaço para a navbar fixa */
+        }
+        
+        .navbar {
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary) !important;
+        }
+        
+        .navbar-brand span {
+            color: var(--secondary);
+        }
+        
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .welcome-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            border-radius: 15px;
+        }
+        
+        .action-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            text-align: center;
+            cursor: pointer;
+            height: 100%;
+            border: none;
+        }
+        
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .action-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: rgba(75, 139, 236, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 0 auto 15px;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            height: 100%;
+            border: none;
+        }
+        
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 15px;
+        }
+        
+        .card-icon.primary {
+            background: rgba(75, 139, 236, 0.1);
+            color: var(--primary);
+        }
+        
+        .card-icon.success {
+            background: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+        }
+        
+        .card-icon.warning {
+            background: rgba(255, 152, 0, 0.1);
+            color: #FF9800;
+        }
+        
+        .pet-card {
+            border: 1px solid #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+            height: 100%;
+        }
+        
+        .pet-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pet-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .pet-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .pet-card:hover .pet-image img {
+            transform: scale(1.05);
+        }
+        
+        .vaccine-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            background: rgba(76, 175, 80, 0.1);
+            color: #4CAF50;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .file-upload {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .file-upload:hover {
+            border-color: var(--primary);
+        }
+        
+        .file-upload i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .vaccine-card {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .login-left {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('imgs/pexels-chevanon-1108099.jpg') no-repeat center center/cover;
+            border-radius: 15px 0 0 15px;
+        }
+        
+        @media (max-width: 992px) {
+            .login-left {
+                border-radius: 15px 15px 0 0;
+                min-height: 200px;
+            }
+            
+            body {
+                padding-top: 70px; /* Ajuste para mobile */
+            }
+        }
+        
+        .btn-primary {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(45deg,  #7ed957, #ffc700);
+            transform: translateY(-2px);
+        }
+        
+        .notification {
+            position: fixed;
+            top: 90px; /* Abaixo da navbar */
+            right: 20px;
+            z-index: 1030; /* Acima da navbar (z-index: 1030) */
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .password-toggle {
+            cursor: pointer;
+        }
+        
+        /* Ajuste para os modais ficarem abaixo da navbar */
+        .modal {
+            z-index: 1060; /* Acima da navbar (1030) e backdrop (1040) */
+        }
+        
+        .modal-backdrop {
+            z-index: 1040; /* Acima da navbar (1030) */
+        }
+        
+        /* Ajuste para a página de login não ter padding-top */
+        #login-page {
+            padding-top: 0;
+        }
+        
+        /* Garantir que a página de login ocupe toda a altura da tela */
+        #login-page .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Classe para esconder elementos */
+        .d-none {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Bootstrap -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="Index.html">
+                <i class="fas fa-paw me-2"></i>Pet<span>Verso</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <div class="navbar-user ms-auto" id="navbar-user">
+                    <!-- Conteúdo dinâmico será inserido aqui via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Página de Login -->
+    <div id="login-page" class="min-vh-100 d-flex align-items-center py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-8">
+                    <div class="card shadow-lg">
+                        <div class="row g-0">
+                            <div class="col-md-5 d-flex align-items-center justify-content-center text-white login-left">
+                                <div class="p-4 text-center">
+                                    <h2 class="mb-3">Bem-vindo à PetVerso</h2>
+                                    <p class="mb-0">Acesse sua conta para gerenciar os agendamentos, prontuários dos animais e muito mais.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="card-body p-5">
+                                    <div class="text-center mb-4">
+                                        <i class="fas fa-paw fa-2x me-2"></i>
+                                        <span class="h3 fw-bold">Pet<span>Verso</span></span>
+                                    </div>
+                                    <h2 class="card-title text-center mb-1">Faça seu login</h2>
+                                    <p class="text-center text-muted mb-4">Entre com suas credenciais para acessar o sistema</p>
+                                    
+                                    <form id="loginForm">
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">E-mail</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                                <input type="email" class="form-control" id="email" placeholder="Seu endereço de e-mail" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-3">
+                                            <label for="password" class="form-label">Senha</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                                <input type="password" class="form-control" id="password" placeholder="Sua senha" required>
+                                                <span class="input-group-text password-toggle" id="password-toggle">
+                                                    <i class="fas fa-eye"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="mb-3 d-flex justify-content-between align-items-center">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="remember">
+                                                <label class="form-check-label" for="remember">Lembrar-me</label>
+                                            </div>
+                                            <a href="#" class="text-primary small" id="forgot-password-link">Esqueci minha senha</a>
+                                        </div>
+                                        
+                                        <button type="submit" class="btn btn-primary w-100 py-2 mb-3">Entrar</button>
+                                        
+                                        <div class="text-center">
+                                            <span class="text-muted">Não tem uma conta? </span>
+                                            <a href="#" class="text-primary" id="register-link">Cadastre-se</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  
+    <!-- Dashboard 
+    <div id="dashboard" class="py-4 d-none">
+        <div class="container">
+            <!-- Banner de Boas-vindas 
+            <div class="welcome-banner p-4 mb-4">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h1 id="welcome-title" class="display-6 fw-bold">Bem-vindo de volta, </h1>
+                        <p class="mb-0 opacity-90">Aqui está o resumo das informações dos seus pets</p>
+                    </div>
+                    <div class="col-md-4 text-md-end">
+                        <img src="https://cdn-icons-png.flaticon.com/512/616/616430.png" alt="Ícone de cachorro" width="120">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cards de Ação 
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="action-card p-4" id="add-pet-action">
+                        <div class="action-icon">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <h3>Adicionar Pet</h3>
+                        <p class="text-muted">Cadastre um novo animal de estimação</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="action-card p-4">
+                        <div class="action-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3>Agendar Consulta</h3>
+                        <p class="text-muted">Marque uma consulta para seu pet</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="action-card p-4">
+                        <div class="action-icon">
+                            <i class="fas fa-file-medical"></i>
+                        </div>
+                        <h3>Prontuário</h3>
+                        <p class="text-muted">Acesse o histórico médico do seu pet</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Seção de Pets 
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2 class="card-title h4 mb-0">Meus Pets</h2>
+                        <button class="btn btn-primary" id="add-pet-btn">
+                            <i class="fas fa-plus me-2"></i>Adicionar Pet
+                        </button>
+                    </div>
+                    
+                    <div class="row g-4" id="pets-grid">
+                        <!-- Conteúdo dinâmico será inserido aqui via JavaScript 
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cards Informativos 
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="dashboard-card p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="card-icon primary">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <h3 class="h5 mb-0">Próxima Consulta</h3>
+                        </div>
+                        <div class="card-value h2 text-primary">15/09/2023</div>
+                        <p class="text-muted mb-0">Consulta de rotina para o Thor</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="dashboard-card p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="card-icon success">
+                                <i class="fas fa-syringe"></i>
+                            </div>
+                            <h3 class="h5 mb-0">Vacinas em Dia</h3>
+                        </div>
+                        <div class="card-value h2 text-success">3/4</div>
+                        <p class="text-muted mb-0">Vacinas pendentes: Antirrábica</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="dashboard-card p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="card-icon warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h3 class="h5 mb-0">Alertas</h3>
+                        </div>
+                        <div class="card-value h2 text-warning">1</div>
+                        <p class="text-muted mb-0">Vermifugação pendente</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal de Cadastro de Pet 
+    <div class="modal fade" id="pet-modal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cadastrar Novo Pet</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="pet-form">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="pet-name" class="form-label">Nome do Pet</label>
+                                <input type="text" class="form-control" id="pet-name" placeholder="Ex: Thor" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="pet-breed" class="form-label">Raça</label>
+                                <input type="text" class="form-control" id="pet-breed" placeholder="Ex: Golden Retriever" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="pet-species" class="form-label">Espécie</label>
+                                <select class="form-select" id="pet-species" required>
+                                    <option value="">Selecione uma espécie</option>
+                                    <option value="cachorro">Cachorro</option>
+                                    <option value="gato">Gato</option>
+                                    <option value="ave">Ave</option>
+                                    <option value="roedor">Roedor</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="pet-age" class="form-label">Idade (anos)</label>
+                                <input type="number" class="form-control" id="pet-age" min="0" max="30" placeholder="Ex: 3" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="pet-weight" class="form-label">Peso (kg)</label>
+                                <input type="number" class="form-control" id="pet-weight" min="0" step="0.1" placeholder="Ex: 28.5" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="pet-color" class="form-label">Cor</label>
+                                <input type="text" class="form-control" id="pet-color" placeholder="Ex: Dourado" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="pet-notes" class="form-label">Observações</label>
+                            <textarea class="form-control" id="pet-notes" placeholder="Informações adicionais sobre o pet" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label class="form-label">Foto do Pet</label>
+                            <div class="file-upload" id="pet-image-upload">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Clique para enviar uma foto do seu pet</p>
+                                <span class="btn btn-sm btn-primary mt-2">Selecionar imagem</span>
+                                <input type="file" id="pet-image" accept="image/*" class="d-none">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label">Foto da Carteira de Vacinação</label>
+                            <div class="file-upload" id="vaccine-card-upload">
+                                <i class="fas fa-file-medical"></i>
+                                <p>Clique para enviar foto da carteira de vacinação</p>
+                                <span class="btn btn-sm btn-primary mt-2">Selecionar imagem</span>
+                                <input type="file" id="vaccine-card-image" accept="image/*" class="d-none">
+                            </div>
+                        </div>
+                        
+                        <h5 class="mb-3">Vacinas</h5>
+                        
+                        <div id="vaccines-container">
+                            <div class="vaccine-card">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h6 class="mb-0">Vacina #1</h6>
+                                    <span class="remove-vaccine text-danger cursor-pointer">&times;</span>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Nome da Vacina</label>
+                                        <input type="text" class="form-control" placeholder="Ex: Antirrábica" class="vaccine-name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Data de Aplicação</label>
+                                        <input type="date" class="form-control" class="vaccine-date">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn btn-outline-primary w-100 mb-4" id="add-vaccine-btn">
+                            <i class="fas fa-plus me-2"></i>Adicionar Vacina
+                        </button>
+                        
+                        <button type="submit" class="btn btn-primary w-100 py-2">Cadastrar Pet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Cadastro de Usuário 
+    <div class="modal fade" id="register-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Criar Nova Conta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="register-form">
+                        <div class="mb-3">
+                            <label for="register-name" class="form-label">Nome Completo</label>
+                            <input type="text" class="form-control" id="register-name" placeholder="Seu nome completo" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="register-email" class="form-label">E-mail</label>
+                            <input type="email" class="form-control" id="register-email" placeholder="Seu endereço de e-mail" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="register-password" class="form-label">Senha</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input type="password" class="form-control" id="register-password" placeholder="Crie uma senha" required>
+                                <span class="input-group-text password-toggle" id="register-password-toggle">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="register-confirm-password" class="form-label">Confirmar Senha</label>
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                <input type="password" class="form-control" id="register-confirm-password" placeholder="Confirme sua senha" required>
+                                <span class="input-group-text password-toggle" id="register-confirm-password-toggle">
+                                    <i class="fas fa-eye"></i>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="register-terms" required>
+                            <label class="form-check-label" for="register-terms">Aceito os termos e condições</label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100 py-2">Criar Conta</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Recuperação de Senha 
+    <div class="modal fade" id="forgot-password-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Recuperar Senha</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="forgot-password-form">
+                        <div class="mb-3">
+                            <label for="recovery-email" class="form-label">E-mail</label>
+                            <input type="email" class="form-control" id="recovery-email" placeholder="Seu endereço de e-mail" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <p class="text-muted">Informe seu e-mail cadastrado e enviaremos um link para redefinir sua senha.</p>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary w-100 py-2">Enviar Link de Recuperação</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Notificação 
+    <div class="notification alert alert-dismissible fade" role="alert" id="notification">
+        <span id="notificationText"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+
+-->
+    <!-- Bootstrap & Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos da página
+            const loginPage = document.getElementById('login-page');
+            const dashboard = document.getElementById('dashboard');
+            const loginForm = document.getElementById('loginForm');
+            const registerLink = document.getElementById('register-link');
+            const forgotPasswordLink = document.getElementById('forgot-password-link');
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            const navbarUser = document.getElementById('navbar-user');
+            const welcomeTitle = document.getElementById('welcome-title');
+            const addPetBtn = document.getElementById('add-pet-btn');
+            const addPetAction = document.getElementById('add-pet-action');
+            const petModal = new bootstrap.Modal(document.getElementById('pet-modal'));
+            const registerModal = new bootstrap.Modal(document.getElementById('register-modal'));
+            const forgotPasswordModal = new bootstrap.Modal(document.getElementById('forgot-password-modal'));
+            const petForm = document.getElementById('pet-form');
+            const registerForm = document.getElementById('register-form');
+            const forgotPasswordForm = document.getElementById('forgot-password-form');
+            const petImageUpload = document.getElementById('pet-image-upload');
+            const petImageInput = document.getElementById('pet-image');
+            const vaccineCardUpload = document.getElementById('vaccine-card-upload');
+            const vaccineCardInput = document.getElementById('vaccine-card-image');
+            const addVaccineBtn = document.getElementById('add-vaccine-btn');
+            const vaccinesContainer = document.getElementById('vaccines-container');
+            const petsGrid = document.getElementById('pets-grid');
+            const passwordToggle = document.getElementById('password-toggle');
+            const passwordInput = document.getElementById('password');
+            const registerPasswordToggle = document.getElementById('register-password-toggle');
+            const registerPasswordInput = document.getElementById('register-password');
+            const registerConfirmPasswordToggle = document.getElementById('register-confirm-password-toggle');
+            const registerConfirmPasswordInput = document.getElementById('register-confirm-password');
+            
+            // Inicializar a verificação de status de login
+            checkLoginStatus();
+            
+            // Toggle de visibilidade de senha
+            passwordToggle.addEventListener('click', function() {
+                togglePasswordVisibility(passwordInput, passwordToggle);
+            });
+            
+            registerPasswordToggle.addEventListener('click', function() {
+                togglePasswordVisibility(registerPasswordInput, registerPasswordToggle);
+            });
+            
+            registerConfirmPasswordToggle.addEventListener('click', function() {
+                togglePasswordVisibility(registerConfirmPasswordInput, registerConfirmPasswordToggle);
+            });
+            
+            // Manipular o envio do formulário de login
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const remember = document.getElementById('remember').checked;
+                
+                // Validação básica
+                if (!email || !password) {
+                    showNotification('Por favor, preencha todos os campos.', 'danger');
+                    return;
+                }
+                
+                // Verificar se é um e-mail válido
+                if (!validateEmail(email)) {
+                    showNotification('Por favor, insira um e-mail válido.', 'danger');
+                    return;
+                }
+                
+                // Verificar se o usuário existe
+                const users = JSON.parse(localStorage.getItem('petcare_users')) || [];
+                const user = users.find(u => u.email === email && u.password === password);
+                
+                if (!user) {
+                    showNotification('E-mail ou senha incorretos.', 'danger');
+                    return;
+                }
+                
+                // Salvar no localStorage se "Lembrar-me" estiver marcado
+                if (remember) {
+                    localStorage.setItem('petcare_email', email);
+                    localStorage.setItem('petcare_password', password);
+                    localStorage.setItem('petcare_remember', 'true');
+                } else {
+                    localStorage.removeItem('petcare_email');
+                    localStorage.removeItem('petcare_password');
+                    localStorage.removeItem('petcare_remember');
+                }
+                
+                // Fazer login
+                loginUser(email, user.name);
+            });
+            
+            // Manipular o link de cadastro
+            registerLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                registerModal.show();
+            });
+            
+            // Manipular o link de recuperação de senha
+            forgotPasswordLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                forgotPasswordModal.show();
+            });
+            
+            // Manipular o formulário de cadastro
+            registerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('register-name').value;
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+                const confirmPassword = document.getElementById('register-confirm-password').value;
+                
+                // Validações
+                if (!name || !email || !password || !confirmPassword) {
+                    showNotification('Por favor, preencha todos os campos.', 'danger');
+                    return;
+                }
+                
+                if (!validateEmail(email)) {
+                    showNotification('Por favor, insira um e-mail válido.', 'danger');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    showNotification('As senhas não coincidem.', 'danger');
+                    return;
+                }
+                
+                if (password.length < 6) {
+                    showNotification('A senha deve ter pelo menos 6 caracteres.', 'danger');
+                    return;
+                }
+                
+                // Verificar se o e-mail já está cadastrado
+                const users = JSON.parse(localStorage.getItem('petcare_users')) || [];
+                if (users.some(user => user.email === email)) {
+                    showNotification('Este e-mail já está cadastrado.', 'danger');
+                    return;
+                }
+                
+                // Salvar novo usuário
+                users.push({ name, email, password });
+                localStorage.setItem('petcare_users', JSON.stringify(users));
+                
+                // Fechar modal e mostrar notificação
+                registerModal.hide();
+                showNotification('Conta criada com sucesso! Faça login para continuar.', 'success');
+                
+                // Preencher o formulário de login
+                document.getElementById('email').value = email;
+                document.getElementById('password').value = password;
+                
+                // Resetar formulário
+                registerForm.reset();
+            });
+            
+            // Manipular o formulário de recuperação de senha
+            forgotPasswordForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('recovery-email').value;
+                
+                if (!email) {
+                    showNotification('Por favor, informe seu e-mail.', 'danger');
+                    return;
+                }
+                
+                if (!validateEmail(email)) {
+                    showNotification('Por favor, insira um e-mail válido.', 'danger');
+                    return;
+                }
+                
+                // Verificar se o e-mail existe
+                const users = JSON.parse(localStorage.getItem('petcare_users')) || [];
+                if (!users.some(user => user.email === email)) {
+                    showNotification('Este e-mail não está cadastrado.', 'danger');
+                    return;
+                }
+                
+                // Simular envio de e-mail
+                showNotification('Enviamos um link de recuperação para seu e-mail.', 'success');
+                forgotPasswordModal.hide();
+                forgotPasswordForm.reset();
+            });
+            
+            // Abrir modal de cadastro de pet
+            addPetBtn.addEventListener('click', () => petModal.show());
+            addPetAction.addEventListener('click', () => petModal.show());
+            
+            // Upload de imagem do pet
+            petImageUpload.addEventListener('click', function() {
+                petImageInput.click();
+            });
+            
+            petImageInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const fileName = this.files[0].name;
+                    petImageUpload.querySelector('p').textContent = `Arquivo: ${fileName}`;
+                }
+            });
+            
+            // Upload de imagem da carteira de vacinação
+            vaccineCardUpload.addEventListener('click', function() {
+                vaccineCardInput.click();
+            });
+            
+            vaccineCardInput.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const fileName = this.files[0].name;
+                    vaccineCardUpload.querySelector('p').textContent = `Arquivo: ${fileName}`;
+                }
+            });
+            
+            // Adicionar campo de vacina
+            addVaccineBtn.addEventListener('click', addVaccineField);
+            
+            // Remover campo de vacina
+            vaccinesContainer.addEventListener('click', function(e) {
+                if (e.target.classList.contains('remove-vaccine')) {
+                    e.target.closest('.vaccine-card').remove();
+                }
+            });
+            
+            // Manipular o envio do formulário de pet
+            petForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const petName = document.getElementById('pet-name').value;
+                const petBreed = document.getElementById('pet-breed').value;
+                const petSpecies = document.getElementById('pet-species').value;
+                const petAge = document.getElementById('pet-age').value;
+                const petWeight = document.getElementById('pet-weight').value;
+                const petColor = document.getElementById('pet-color').value;
+                
+                if (!petName || !petBreed || !petSpecies || !petAge || !petWeight || !petColor) {
+                    showNotification('Por favor, preencha todos os campos obrigatórios.', 'danger');
+                    return;
+                }
+                
+                // Coletar informações das vacinas
+                const vaccines = [];
+                const vaccineCards = vaccinesContainer.querySelectorAll('.vaccine-card');
+                
+                vaccineCards.forEach(card => {
+                    const name = card.querySelector('.vaccine-name').value;
+                    const date = card.querySelector('.vaccine-date').value;
+                    
+                    if (name && date) {
+                        vaccines.push({ name, date });
+                    }
+                });
+                
+                // Criar objeto do pet
+                const pet = {
+                    id: Date.now(),
+                    name: petName,
+                    breed: petBreed,
+                    species: petSpecies,
+                    age: petAge,
+                    weight: petWeight,
+                    color: petColor,
+                    notes: document.getElementById('pet-notes').value,
+                    vaccines: vaccines,
+                    image: petImageInput.files[0] ? URL.createObjectURL(petImageInput.files[0]) : 'https://images.unsplash.com/photo-1552053831-71594a27632d?ixlib=rb-1.2.1&auto=format&fit=crop&w=612&q=80',
+                    vaccineCard: vaccineCardInput.files[0] ? URL.createObjectURL(vaccineCardInput.files[0]) : null
+                };
+                
+                // Salvar pet no localStorage
+                savePet(pet);
+                
+                // Fechar modal e mostrar notificação
+                petModal.hide();
+                showNotification('Pet cadastrado com sucesso!', 'success');
+                
+                // Atualizar lista de pets
+                loadPets();
+                
+                // Resetar formulário
+                petForm.reset();
+                vaccinesContainer.innerHTML = `
+                    <div class="vaccine-card">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <h6 class="mb-0">Vacina #1</h6>
+                            <span class="remove-vaccine text-danger cursor-pointer">&times;</span>
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Nome da Vacina</label>
+                                <input type="text" class="form-control" placeholder="Ex: Antirrábica" class="vaccine-name">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Data de Aplicação</label>
+                                <input type="date" class="form-control" class="vaccine-date">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            // Função para verificar status de login
+            function checkLoginStatus() {
+                const isLoggedIn = localStorage.getItem('petcare_loggedIn') === 'true';
+                const savedEmail = localStorage.getItem('petcare_email');
+                const savedPassword = localStorage.getItem('petcare_password');
+                
+                if (isLoggedIn && savedEmail && savedPassword) {
+                    const users = JSON.parse(localStorage.getItem('petcare_users')) || [];
+                    const user = users.find(u => u.email === savedEmail && u.password === savedPassword);
+                    
+                    if (user) {
+                        updateNavbarUser(savedEmail, user.name);
+                        showDashboard(savedEmail, user.name);
+                        loadPets();
+                        return;
+                    }
+                }
+                
+                showLoginPage();
+            }
+            
+            // Função para fazer login
+            function loginUser(email, name) {
+                // Simular autenticação bem-sucedida
+                localStorage.setItem('petcare_loggedIn', 'true');
+                
+                // Atualizar navbar com informações do usuário
+                updateNavbarUser(email, name);
+                
+                // Mostrar notificação
+                showNotification('Login realizado com sucesso!', 'success');
+                
+                // Redirecionar para dashboard
+                showDashboard(email, name);
+                loadPets();
+            }
+            
+            // Função para fazer logout
+            function logoutUser() {
+                // Limpar status de login
+                localStorage.setItem('petcare_loggedIn', 'false');
+                
+                // Mostrar notificação
+                showNotification('Logout realizado com sucesso!', 'success');
+                
+                // Redirecionar para página de login
+                showLoginPage();
+            }
+            
+            // Função para atualizar navbar com informações do usuário
+            function updateNavbarUser(email, name) {
+                const firstName = name || email.split('@')[0];
+                const displayName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+                
+                navbarUser.innerHTML = `
+                    <div class="d-flex align-items-center me-3">
+                        <div class="user-avatar">${displayName.charAt(0).toUpperCase()}</div>
+                        <span class="user-name">${displayName}</span>
+                    </div>
+                    <button class="btn btn-danger btn-sm" id="logout-btn">
+                        <i class="fas fa-sign-out-alt me-1"></i> Sair
+                    </button>
+                `;
+                
+                // Adicionar evento de logout ao botão
+                document.getElementById('logout-btn').addEventListener('click', logoutUser);
+            }
+            
+            // Função para mostrar dashboard
+            function showDashboard(email, name) {
+                // Atualizar título de boas-vindas
+                const firstName = name || email.split('@')[0];
+                const displayName = firstName.charAt(0).toUpperCase() + firstName.slice(1);
+                welcomeTitle.textContent = `Bem-vindo de volta, ${displayName}`;
+                
+                // Alternar visibilidade das páginas
+                loginPage.classList.add('d-none');
+                dashboard.classList.remove('d-none');
+            }
+            
+            // Função para mostrar página de login
+            function showLoginPage() {
+                // Limpar navbar
+                navbarUser.innerHTML = '';
+                
+                // Preencher campos se "Lembrar-me" estava ativo
+                const savedEmail = localStorage.getItem('petcare_email');
+                const savedPassword = localStorage.getItem('petcare_password');
+                const rememberMe = localStorage.getItem('petcare_remember') === 'true';
+                
+                if (savedEmail && rememberMe) {
+                    document.getElementById('email').value = savedEmail;
+                    document.getElementById('password').value = savedPassword;
+                    document.getElementById('remember').checked = true;
+                }
+                
+                // Alternar visibilidade das páginas
+                dashboard.classList.add('d-none');
+                loginPage.classList.remove('d-none');
+            }
+            
+            // Função para alternar visibilidade da senha
+            function togglePasswordVisibility(input, toggle) {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    toggle.innerHTML = '<i class="fas fa-eye-slash"></i>';
+                } else {
+                    input.type = 'password';
+                    toggle.innerHTML = '<i class="fas fa-eye"></i>';
+                }
+            }
+            
+            // Função para adicionar campo de vacina
+            function addVaccineField() {
+                const vaccineCount = vaccinesContainer.querySelectorAll('.vaccine-card').length + 1;
+                
+                const vaccineCard = document.createElement('div');
+                vaccineCard.className = 'vaccine-card';
+                vaccineCard.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h6 class="mb-0">Vacina #${vaccineCount}</h6>
+                        <span class="remove-vaccine text-danger cursor-pointer">&times;</span>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Nome da Vacina</label>
+                            <input type="text" class="form-control" placeholder="Ex: Antirrábica" class="vaccine-name">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Data de Aplicação</label>
+                            <input type="date" class="form-control" class="vaccine-date">
+                        </div>
+                    </div>
+                `;
+                
+                vaccinesContainer.appendChild(vaccineCard);
+            }
+            
+            // Função para salvar pet no localStorage
+            function savePet(pet) {
+                let pets = JSON.parse(localStorage.getItem('petcare_pets')) || [];
+                pets.push(pet);
+                localStorage.setItem('petcare_pets', JSON.stringify(pets));
+            }
+            
+            // Função para carregar pets do localStorage
+            function loadPets() {
+                const pets = JSON.parse(localStorage.getItem('petcare_pets')) || [];
+                petsGrid.innerHTML = '';
+                
+                if (pets.length === 0) {
+                    petsGrid.innerHTML = `
+                        <div class="col-12 text-center py-5">
+                            <i class="fas fa-paw fa-3x text-muted mb-3"></i>
+                            <h3 class="h5 text-muted">Nenhum pet cadastrado</h3>
+                            <p class="text-muted">Clique no botão "Adicionar Pet" para cadastrar seu primeiro animal de estimação</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                pets.forEach(pet => {
+                    const col = document.createElement('div');
+                    col.className = 'col-md-6 col-lg-4';
+                    
+                    // Formatar vacinas
+                    let vaccinesHTML = '';
+                    if (pet.vaccines && pet.vaccines.length > 0) {
+                        pet.vaccines.forEach(vaccine => {
+                            vaccinesHTML += `<span class="vaccine-badge">${vaccine.name}</span>`;
+                        });
+                    } else {
+                        vaccinesHTML = '<span class="vaccine-badge">Nenhuma vacina registrada</span>';
+                    }
+                    
+                    col.innerHTML = `
+                        <div class="pet-card">
+                            <div class="pet-image">
+                                <img src="${pet.image}" alt="${pet.name}">
+                            </div>
+                            <div class="p-3">
+                                <h3 class="h5">${pet.name}</h3>
+                                <p class="text-muted mb-2">${pet.breed} • ${pet.species}</p>
+                                <div class="row g-2 mb-2">
+                                    <div class="col-6">
+                                        <small class="text-muted"><i class="fas fa-birthday-cake me-1"></i> ${pet.age} anos</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <small class="text-muted"><i class="fas fa-weight me-1"></i> ${pet.weight} kg</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <small class="text-muted"><i class="fas fa-palette me-1"></i> ${pet.color}</small>
+                                    </div>
+                                    <div class="col-6">
+                                        <small class="text-muted"><i class="fas fa-syringe me-1"></i> ${pet.vaccines.length} vacinas</small>
+                                    </div>
+                                </div>
+                                <div class="pet-vaccines">
+                                    ${vaccinesHTML}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    petsGrid.appendChild(col);
+                });
+            }
+            
+            // Função para validar e-mail
+            function validateEmail(email) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return re.test(email);
+            }
+            
+            // Função para mostrar notificação
+            function showNotification(message, type = 'success') {
+                notificationText.textContent = message;
+                notification.className = `notification alert alert-${type} alert-dismissible fade show`;
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
