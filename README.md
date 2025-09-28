@@ -42,7 +42,7 @@ Pagamentos online para consultas e serviços
 
 🤝 Contribuição
 
-Parceria com Marcos Daniel, LinkedIn: linkedin.com/in/marcossiriano04 e GitHub: github.com/Ribeirokjz .
+Parceria com Marcos Daniel: LinkedIn: linkedin.com/in/marcossiriano04 e GitHub: github.com/Ribeirokjz .
 
 📄 Licença
 
